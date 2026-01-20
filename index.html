@@ -1,11 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Cartas de amor y odio</title>
-  </head>
-  <body>
-    <h1>Cartas de amor y odio</h1>
-    <p>Este sitio mostrará cartas anónimas.</p>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Cartas de amor y odio</title>
+</head>
+<body>
+
+  <h1>Cartas de amor y odio</h1>
+
+  <div id="letter">
+    Cargando carta...
+  </div>
+
+  <script>
+    const letters = [
+      "Te pienso más de lo que debería.",
+      "Ojalá nunca leas esto.",
+      "Te amé en silencio.",
+      "Esto no es una carta, es una herida."
+    ];
+
+    function showRandomLetter() {
+      const randomIndex = Math.floor(Math.random() * letters.length);
+      document.getElementById("letter").innerText = letters[randomIndex];
+    }
+
+    showRandomLetter();
+    setInterval(showRandomLetter, 600000); // 10 minutes
+  </script>
+
+</body>
 </html>
