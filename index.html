@@ -13,20 +13,36 @@
   </div>
 
   <script>
-    const letters = [
-      "Te pienso más de lo que debería.",
-      "Ojalá nunca leas esto.",
-      "Te amé en silencio.",
-      "Esto no es una carta, es una herida."
-    ];
+    const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLj-Rga6GHuVHQ6p37iq1ss2dgjJwsrftzn5nbUFB2AG_WnEyNP6Eb3klj3eIfYMfOo1rLwcJuCPeFCBjoN18fVrtNqS-NmVo2Dbu-Y3zmu6qwqBRs3iJx0RLYE4ZlfskUPP1t5VMSW8OO2eyQTCrw8ADbwxdIUDzkPDkYKIHxmLhx1b9qx5x2TSkZAkBMLBIPBMRTFVraQUBEfc5XTkzO5cnK5lna7hMeOKWQm_vxj4QU5Yl3XTDRdXaGC6yPMN3HXdAm8fNjM0f53fOJeftLU8dfG5jw&lib=MQI7QxRBYlxiqI2aa0E5dzYRd7endaXU7";
+    let cartas = [];
+    let currentIndex = 0;
 
-    function showRandomLetter() {
-      const randomIndex = Math.floor(Math.random() * letters.length);
-      document.getElementById("letter").innerText = letters[randomIndex];
+    async function loadCartas() {
+      try {
+        const response = await fetch(API_URL);
+        cartas = await response.json();
+
+        if (cartas.length === 0) {
+          document.getElementById("letter").innerText =
+            "Aún no hay cartas.";
+          return;
+        }
+
+        showNextCarta();
+        setInterval(showNextCarta, 600000); // 10 minutes
+      } catch (error) {
+        document.getElementById("letter").innerText =
+          "Error al cargar las cartas.";
+      }
     }
 
-    showRandomLetter();
-    setInterval(showRandomLetter, 5000); // 5 seconds (TEST)
+    function showNextCarta() {
+      document.getElementById("letter").innerText =
+        cartas[currentIndex];
+      currentIndex = (currentIndex + 1) % cartas.length;
+    }
+
+    loadCartas();
   </script>
 
 </body>
