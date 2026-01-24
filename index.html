@@ -5,6 +5,12 @@
   <title>Cartas de amor y odio</title>
 </head>
 <style>
+  .title {
+  font-family: cursive;
+  font-size: 4em;
+  letter-spacing: 2px;
+  display: inline-block;}
+  
   body {
     background-color: #c43956;
     margin: 0;
@@ -42,6 +48,15 @@
 .divider img {
   max-width: 300px;
 }
+marquee .sparkle {
+  color: #ffffff;
+  text-shadow:
+    0 0 2px #ffffff,
+    0 0 6px #ffffff,
+    0 0 10px #ffd1dc,
+    0 0 16px #ffe6ee;
+  animation: sparkle 1.5s infinite alternate;
+}
 
 </style>
 
@@ -51,7 +66,7 @@
   <div class="divider">
   <img src="pinkheartline.gif" alt="pinkheartline"
   </div>
-  <h1><span class="sparkle">Cartas de amor y odio</span></h1>
+ <span class="sparkle">Cartas de amor y odio</span>
 </marquee>
   <div id="letter">
     Cargando carta...
