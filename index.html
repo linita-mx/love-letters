@@ -126,25 +126,29 @@ marquee .sparkle {
   } while (randomIndex === lastIndex && cartas.length > 1);
 
   lastIndex = randomIndex;
-  document.getElementById("letter").innerText = cartas[randomIndex];
-}
 
+  const letterDiv = document.getElementById("letter");
+  letterDiv.innerText = cartas[randomIndex];
+  letterDiv.scrollTop = 0;
 
-// reset scroll position
-letterDiv.scrollTop = 0;
+  if (letterDiv.scrollHeight > letterDiv.clientHeight) {
+    setTimeout(() => {
+      let scrollInterval = setInterval(() => {
+        if (letterDiv.scrollTop + letterDiv.clientHeight >= letterDiv.scrollHeight) {
+          clearInterval(scrollInterval);
 
-// auto-scroll if content overflows
-if (letterDiv.scrollHeight > letterDiv.clientHeight) {
-  let scrollInterval = setInterval(() => {
-    if (letterDiv.scrollTop + letterDiv.clientHeight >= letterDiv.scrollHeight) {
-      letterDiv.scrollTop = 0;
-    } else {
-      letterDiv.scrollTop += 1;
-    }
-  }, 40);
-}
+          setTimeout(() => {
+            letterDiv.scrollTop = 0;
+          }, 2000); // wait before restarting
 
+        } else {
+          letterDiv.scrollTop += 1;
+        }
+      }, 40);
+    }, 2000); // wait before starting
   }
+}
+
 
   loadCartas();
 </script>
