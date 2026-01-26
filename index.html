@@ -150,7 +150,12 @@ marquee .sparkle {
   lastIndex = randomIndex;
 
   const letterDiv = document.getElementById("letter");
-  letterDiv.innerText = cartas[randomIndex];
+  const cleanedText = cartas[randomIndex]
+  .replace(/\r\n/g, "\n")       // normalize line endings
+  .replace(/\n{3,}/g, "\n\n");  // collapse excessive breaks
+
+letterDiv.innerText = cleanedText;
+
   letterDiv.scrollTop = 0;
 
   if (letterDiv.scrollHeight > letterDiv.clientHeight) {
