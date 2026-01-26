@@ -158,7 +158,21 @@ letterDiv.innerText = cleanedText;
 
   letterDiv.scrollTop = 0;
 
-  if (letterDiv.scrollHeight > letterDiv.clientHeight) {
+ if (letterDiv.scrollHeight > letterDiv.clientHeight) {
+  setTimeout(() => {
+    const scrollInterval = setInterval(() => {
+      if (letterDiv.scrollTop + letterDiv.clientHeight >= letterDiv.scrollHeight) {
+        // reached bottom → pause, then reset to top
+        setTimeout(() => {
+          letterDiv.scrollTop = 0;
+        }, 3000); // pause at bottom
+      } else {
+        letterDiv.scrollTop += 1;
+      }
+    }, 60); // slower scroll speed
+  }, 3000); // pause at top
+}
+ {
     setTimeout(() => {
       let scrollInterval = setInterval(() => {
         if (letterDiv.scrollTop + letterDiv.clientHeight >= letterDiv.scrollHeight) {
