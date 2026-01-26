@@ -97,6 +97,7 @@ marquee .sparkle {
   <script>
   const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLj-Rga6GHuVHQ6p37iq1ss2dgjJwsrftzn5nbUFB2AG_WnEyNP6Eb3klj3eIfYMfOo1rLwcJuCPeFCBjoN18fVrtNqS-NmVo2Dbu-Y3zmu6qwqBRs3iJx0RLYE4ZlfskUPP1t5VMSW8OO2eyQTCrw8ADbwxdIUDzkPDkYKIHxmLhx1b9qx5x2TSkZAkBMLBIPBMRTFVraQUBEfc5XTkzO5cnK5lna7hMeOKWQm_vxj4QU5Yl3XTDRdXaGC6yPMN3HXdAm8fNjM0f53fOJeftLU8dfG5jw&lib=MQI7QxRBYlxiqI2aa0E5dzYRd7endaXU7";
   let cartas = [];
+  let lastIndex = -1;
 
   async function loadCartas() {
     try {
@@ -118,9 +119,16 @@ marquee .sparkle {
   }
 
   function showRandomCarta() {
-    const randomIndex = Math.floor(Math.random() * cartas.length);
-    const letterDiv = document.getElementById("letter");
-letterDiv.innerText = cartas[randomIndex];
+  let randomIndex;
+
+  do {
+    randomIndex = Math.floor(Math.random() * cartas.length);
+  } while (randomIndex === lastIndex && cartas.length > 1);
+
+  lastIndex = randomIndex;
+  document.getElementById("letter").innerText = cartas[randomIndex];
+}
+
 
 // reset scroll position
 letterDiv.scrollTop = 0;
