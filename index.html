@@ -43,6 +43,7 @@ marquee {
     line-height: 1.3;
     white-space: pre-wrap;
     border: 1px solid #ffffff;
+    overflow-y:auto;
   }
 
   .divider {
@@ -117,8 +118,23 @@ marquee .sparkle {
 
   function showRandomCarta() {
     const randomIndex = Math.floor(Math.random() * cartas.length);
-    document.getElementById("letter").innerText =
-      cartas[randomIndex];
+    const letterDiv = document.getElementById("letter");
+letterDiv.innerText = cartas[randomIndex];
+
+// reset scroll position
+letterDiv.scrollTop = 0;
+
+// auto-scroll if content overflows
+if (letterDiv.scrollHeight > letterDiv.clientHeight) {
+  let scrollInterval = setInterval(() => {
+    if (letterDiv.scrollTop + letterDiv.clientHeight >= letterDiv.scrollHeight) {
+      letterDiv.scrollTop = 0;
+    } else {
+      letterDiv.scrollTop += 1;
+    }
+  }, 40);
+}
+
   }
 
   loadCartas();
