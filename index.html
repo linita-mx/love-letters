@@ -61,7 +61,15 @@ marquee .sparkle {
     0 0 16px #ffe6ee;
   animation: sparkle 1.5s infinite alternate;
 }
-
+#footer-note {
+  max-width: 800px;
+  margin: 30px auto 10px auto;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.85em;
+  color: #ffffff;
+  text-align: center;
+  opacity: 0.85;
+}
 </style>
 
 
@@ -74,7 +82,11 @@ marquee .sparkle {
   <div id="letter">
     Cargando carta...
   </div>
-
+<div id="footer-note">
+  Cargando carta…<br>
+  Escríbenos anónimamente a: cartas de amor y odio @ gmail.com<br>
+  Favor de no incluir datos identificatorios.
+  </div>
   <script>
   const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLj-Rga6GHuVHQ6p37iq1ss2dgjJwsrftzn5nbUFB2AG_WnEyNP6Eb3klj3eIfYMfOo1rLwcJuCPeFCBjoN18fVrtNqS-NmVo2Dbu-Y3zmu6qwqBRs3iJx0RLYE4ZlfskUPP1t5VMSW8OO2eyQTCrw8ADbwxdIUDzkPDkYKIHxmLhx1b9qx5x2TSkZAkBMLBIPBMRTFVraQUBEfc5XTkzO5cnK5lna7hMeOKWQm_vxj4QU5Yl3XTDRdXaGC6yPMN3HXdAm8fNjM0f53fOJeftLU8dfG5jw&lib=MQI7QxRBYlxiqI2aa0E5dzYRd7endaXU7";
   let cartas = [];
