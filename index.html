@@ -164,8 +164,11 @@ letterDiv.innerText = cleanedText;
       if (letterDiv.scrollTop + letterDiv.clientHeight >= letterDiv.scrollHeight) {
         // reached bottom → pause, then reset to top
         setTimeout(() => {
-          letterDiv.scrollTop = 0;
-        }, 3000); // pause at bottom
+  letterDiv.scrollTop = 0;
+}, 3000);
+
+return;
+
       } else {
         letterDiv.scrollTop += 1;
       }
