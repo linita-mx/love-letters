@@ -164,9 +164,7 @@ letterDiv.innerText = cleanedText;
       if (letterDiv.scrollTop + letterDiv.clientHeight >= letterDiv.scrollHeight) {
         // reached bottom → pause, then reset to top
         setTimeout(() => {
-  letterDiv.scrollTop = 0;
-}, 3000);
-
+  letterDiv.scrollTop = 0;}, 3000);
 return;
 
       } else {
@@ -174,23 +172,6 @@ return;
       }
     }, 90); // slower scroll speed
   }, 3000); // pause at top
-}
- {
-    setTimeout(() => {
-      let scrollInterval = setInterval(() => {
-        if (letterDiv.scrollTop + letterDiv.clientHeight >= letterDiv.scrollHeight) {
-          clearInterval(scrollInterval);
-
-          setTimeout(() => {
-            letterDiv.scrollTop = 0;
-          }, 4000); // wait before restarting
-
-        } else {
-          letterDiv.scrollTop += 1;
-        }
-      }, 90);
-    }, 4000); // wait before starting
-  }
 }
 
 
