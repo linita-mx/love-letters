@@ -179,14 +179,14 @@ letterDiv.innerText = cleanedText;
       if (letterDiv.scrollTop + letterDiv.clientHeight >= letterDiv.scrollHeight) {
         // reached bottom → pause, then reset to top
         setTimeout(() => {
-  letterDiv.scrollTop = 0;}, 3000);
+  letterDiv.scrollTop = 0;}, 5000);
 return;
 
       } else {
-        letterDiv.scrollTop += 1;
+        letterDiv.scrollTop += 0.5;
       }
-    }, 90); // slower scroll speed
-  }, 3000); // pause at top
+    }, 180); // slower scroll speed
+  }, 5000); // pause at top
 }
 }
 
