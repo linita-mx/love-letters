@@ -183,7 +183,7 @@ if (letterDiv.scrollHeight > letterDiv.clientHeight) {
   setTimeout(() => {
     scrollInterval = setInterval(() => {
 
-      if (letterDiv.scrollTop + letterDiv.clientHeight >= letterDiv.scrollHeight) {
+if (letterDiv.scrollTop + letterDiv.clientHeight >= letterDiv.scrollHeight) {
   clearInterval(scrollInterval);
   scrollInterval = null;
 
@@ -192,12 +192,10 @@ if (letterDiv.scrollHeight > letterDiv.clientHeight) {
   }, 5000);
 
   return;
+} else {
+  letterDiv.scrollTop += 0.5;
 }
 
-
-      } else {
-        letterDiv.scrollTop += 0.5;
-      }
     }, 180); // slower scroll speed
   }, 5000); // pause at top
 }
