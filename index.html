@@ -138,6 +138,13 @@ marquee .sparkle {
   </div>
   <script>
     let scrollInterval = null;
+
+function startScroll(letterDiv) {
+  if (scrollInterval) {
+    clearInterval(scrollInterval);
+    scrollInterval = null;
+  }
+}
   const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLj-Rga6GHuVHQ6p37iq1ss2dgjJwsrftzn5nbUFB2AG_WnEyNP6Eb3klj3eIfYMfOo1rLwcJuCPeFCBjoN18fVrtNqS-NmVo2Dbu-Y3zmu6qwqBRs3iJx0RLYE4ZlfskUPP1t5VMSW8OO2eyQTCrw8ADbwxdIUDzkPDkYKIHxmLhx1b9qx5x2TSkZAkBMLBIPBMRTFVraQUBEfc5XTkzO5cnK5lna7hMeOKWQm_vxj4QU5Yl3XTDRdXaGC6yPMN3HXdAm8fNjM0f53fOJeftLU8dfG5jw&lib=MQI7QxRBYlxiqI2aa0E5dzYRd7endaXU7";
   let cartas = [];
   let lastIndex = -1;
@@ -152,14 +159,7 @@ marquee .sparkle {
           "Aún no hay cartas.";
         return;
       }
-let scrollInterval = null;
 
-function startScroll(letterDiv) {
-  if (scrollInterval) {
-    clearInterval(scrollInterval);
-    scrollInterval = null;
-  }
-}
 
       showRandomCarta();
       setInterval(showRandomCarta, 300000); // 5 minutes
