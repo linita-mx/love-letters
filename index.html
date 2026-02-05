@@ -153,6 +153,7 @@ function startScroll(letterDiv) {
   async function loadCartas() {
     try {
       const response = await fetch(API_URL);
+      console.log("fetched response");
       cartas = await response.json();
 
       if (cartas.length === 0) {
