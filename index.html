@@ -187,54 +187,6 @@ function startScroll(letterDiv) {
 
 letterDiv.innerText = cleanedText;
 
- letterDiv.scrollTop = 0;
-
-if (scrollInterval) {
-  clearInterval(scrollInterval);
-  scrollInterval = null;
-}
-
-if (letterDiv.scrollHeight > letterDiv.clientHeight) {
-  setTimeout(() => {
-   scrollInterval = setInterval(() => {
-  const atBottom =
-    letterDiv.scrollTop + letterDiv.clientHeight >= letterDiv.scrollHeight - 1;
-
-  if (atBottom) {
-    clearInterval(scrollInterval);
-    scrollInterval = null;
-
-    // pause at bottom
-    setTimeout(() => {
-      letterDiv.scrollTop = 0;
-
-      // pause at top, then restart scroll
-      setTimeout(() => {
-        startScroll(letterDiv);
-
-        scrollInterval = setInterval(() => {
-          letterDiv.scrollTop += 1.2;
-        }, 60);
-
-      }, 5000);
-    }, 5000);
-
-    return;
-  }
-
-  letterDiv.scrollTop += 1.2;
-}, 90);
-
-
-if (letterDiv.scrollTop + letterDiv.clientHeight >= letterDiv.scrollHeight) {
-  clearInterval(scrollInterval);
-  scrollInterval = null;
-
-  setTimeout(() => {
-    letterDiv.scrollTop = 0;
-  }, 5000);
-
-
 }
 
 
