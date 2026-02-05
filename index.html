@@ -3,198 +3,150 @@
 <head>
   <meta charset="UTF-8">
   <title>Cartas de amor y odio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      background-color: #c43956;
+      margin: 0;
+      padding: clamp(8px, 1.5vw, 32px);
+      color: #ffffff;
+      font-family: Times, "Times New Roman", serif;
+    }
+
+    .title {
+      font-family: "Cedarville Cursive", cursive;
+      font-size: clamp(42px, 6.5vw, 110px);
+      letter-spacing: 0.15em;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    marquee {
+      overflow: visible;
+    }
+
+    #letter {
+      width: 85vw;
+      margin: 0 auto;
+      padding: clamp(14px, 2vw, 32px);
+      background-color: #eb6e88;
+      font-family: "Courier Bold", Courier, monospace;
+      font-size: clamp(20px, 2.6vw, 42px);
+      line-height: 1.35;
+      white-space: pre-wrap;
+      border: 1px solid #ffffff;
+      max-height: 60vh;
+      overflow-y: auto;
+      /* This prevents the "vibration" by making scrolling feel natural */
+      scroll-behavior: auto; 
+    }
+
+    #footer-note {
+      max-width: 80vw;
+      margin: 40px auto 20px auto;
+      font-family: "Courier New", Courier, monospace;
+      font-size: clamp(20px, 2.2vw, 28px);
+      line-height: 1.4;
+      color: #ffffff;
+      text-align: center;
+      opacity: 0.95;
+    }
+
+    .sparkle {
+      color: #ffffff;
+      text-shadow: 0 0 2px #ffffff, 0 0 10px #ffd1dc;
+    }
+
+    /* Scrollbar Styling */
+    #letter::-webkit-scrollbar { width: 10px; }
+    #letter::-webkit-scrollbar-track { background: #eb6e88; }
+    #letter::-webkit-scrollbar-thumb { background-color: #ffffff; border-radius: 6px; }
+  </style>
 </head>
 <body>
-<style>
-.title {
-  font-family: "Cedarville Cursive", cursive;
-  font-size: clamp(42px, 6.5vw, 110px);
-  letter-spacing: 0.15em;
-  display: inline-block;
-  white-space: nowrap;
-}
 
-marquee {
-  overflow: visible;
-}
-
-  
-body {
-  background-color: #c43956;
-  margin: 0;
-  padding: clamp(8px, 1.5vw, 32px);
-  color: #ffffff;
-  font-family: Times, "Times New Roman", serif;
-}
-
-
-
-  h1 {
-    text-align: center;
-    font-family: cursive;
-    font-weight: normal;
-    font-size: 3.2em;
-    margin: 20px 0 30px 0;
-    letter-spacing: 1px;
-  }
-
-  #letter {
-  width: 85vw;
-  max-width: none;
-  min-width: 0;
-
-  margin: 0 auto;
-  padding: clamp(14px, 2vw, 32px);
-
-  background-color: #eb6e88;
-  font-family: "Courier Bold", Courier, monospace;
-  font-size: clamp(20px, 2.6vw, 42px);
-  line-height: 1.35;
-
-  white-space: pre-wrap;
-  border: 1px solid #ffffff;
-
-  max-height: 60vh;
-  overflow-y: auto;
-}
-
-
-  .divider {
-  text-align: center;
-  margin: 10px 0 20px 0;
-}
-
-.divider img {
-  max-width: 300px;
-}
-marquee .sparkle {
-  color: #ffffff;
-  text-shadow:
-    0 0 2px #ffffff,
-    0 0 6px #ffffff,
-    0 0 10px #ffd1dc,
-    0 0 16px #ffe6ee;
-  animation: sparkle 1.5s infinite alternate;
-}
-#footer-note {
-  max-width: 80vw;
-  margin: 40px auto 20px auto;
-
-  font-family: "Courier New", Courier, monospace;
-  font-size: clamp(20px, 2.2vw, 28px);
-  line-height: 1.4;
-
-  color: #ffffff;
-  text-align: center;
-
-  opacity: 0.95;
-}
-
-
-  @font-face {
-  font-family: "Authentic sheldon";
-  src: url("authentic sheldon.otf");
-}
-  /* Firefox */
-#letter {
-  scrollbar-width: thin;
-  scrollbar-color: #ffffff #eb6e88;
-}
-
-/* Chrome, Safari, Edge */
-#letter::-webkit-scrollbar {
-  width: 10px;
-}
-
-#letter::-webkit-scrollbar-track {
-  background: #eb6e88;
-}
-
-#letter::-webkit-scrollbar-thumb {
-  background-color: #ffffff;
-  border-radius: 6px;
-  border: 2px solid #eb6e88;
-}
-
-</style>
-
-
-
-<marquee behavior="scroll" direction="left" scrollamount="8" loop="infinite">
+<marquee behavior="scroll" direction="left" scrollamount="8">
   <img src="pinkheartline.gif" alt="pinkheartline" style="vertical-align: middle;">
   <span class="sparkle title">Cartas de amor y odio</span>
-    <img src="pinkheartline.gif" alt="pinkheartline" style="vertical-align: middle;">
+  <img src="pinkheartline.gif" alt="pinkheartline" style="vertical-align: middle;">
 </marquee>
 
-  <div id="letter">
-    Cargando carta...
-  </div>
+<div id="letter">Cargando carta...</div>
+
 <div id="footer-note">
   Escríbenos anónimamente a: <b>cartas de amor y odio @ gmail.com</b> <br>
   Favor de no incluir datos identificatorios.
-  </div>
-  <script>
-    console.log("script is running");
-    let scrollInterval = null;
+</div>
 
-function startScroll(letterDiv) {
-  if (scrollInterval) {
-    clearInterval(scrollInterval);
-    scrollInterval = null;
-  }
-}
+<script>
   const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLj-Rga6GHuVHQ6p37iq1ss2dgjJwsrftzn5nbUFB2AG_WnEyNP6Eb3klj3eIfYMfOo1rLwcJuCPeFCBjoN18fVrtNqS-NmVo2Dbu-Y3zmu6qwqBRs3iJx0RLYE4ZlfskUPP1t5VMSW8OO2eyQTCrw8ADbwxdIUDzkPDkYKIHxmLhx1b9qx5x2TSkZAkBMLBIPBMRTFVraQUBEfc5XTkzO5cnK5lna7hMeOKWQm_vxj4QU5Yl3XTDRdXaGC6yPMN3HXdAm8fNjM0f53fOJeftLU8dfG5jw&lib=MQI7QxRBYlxiqI2aa0E5dzYRd7endaXU7";
+  
   let cartas = [];
   let lastIndex = -1;
+  let currentScrollTimeout = null; // Keeps track of the animation
 
   async function loadCartas() {
     try {
       const response = await fetch(API_URL);
-      console.log("fetched response");
       cartas = await response.json();
-
-      if (cartas.length === 0) {
-        document.getElementById("letter").innerText =
-          "Aún no hay cartas.";
-        return;
+      if (cartas.length > 0) {
+        showRandomCarta();
+        setInterval(showRandomCarta, 300000); // New letter every 5 mins
       }
-
-
-      showRandomCarta();
-      setInterval(showRandomCarta, 300000); // 5 minutes
     } catch (error) {
-      document.getElementById("letter").innerText =
-        "Error al cargar las cartas.";
+      document.getElementById("letter").innerText = "Error al cargar las cartas.";
     }
   }
 
   function showRandomCarta() {
-  let randomIndex;
+    // 1. Pick a random letter
+    let randomIndex;
+    do {
+      randomIndex = Math.floor(Math.random() * cartas.length);
+    } while (randomIndex === lastIndex && cartas.length > 1);
+    lastIndex = randomIndex;
 
-  do {
-    randomIndex = Math.floor(Math.random() * cartas.length);
-  } while (randomIndex === lastIndex && cartas.length > 1);
+    // 2. Display the text
+    const letterDiv = document.getElementById("letter");
+    letterDiv.innerText = cartas[randomIndex].replace(/\r\n/g, "\n").replace(/\n{3,}/g, "\n\n");
 
-  lastIndex = randomIndex;
+    // 3. Reset scroll and start the animation
+    stopScroll(); 
+    startAutoScroll(letterDiv);
+  }
 
-  const letterDiv = document.getElementById("letter");
-  const cleanedText = cartas[randomIndex]
-  .replace(/\r\n/g, "\n")       // normalize line endings
-  .replace(/\n{3,}/g, "\n\n");  // collapse excessive breaks
+  function stopScroll() {
+    clearTimeout(currentScrollTimeout);
+  }
 
-letterDiv.innerText = cleanedText;
+  function startAutoScroll(element) {
+    const pauseTime = 5000; // 5 seconds pause
+    const scrollStep = 1;   // How many pixels to move
+    const scrollSpeed = 40; // Milliseconds (Lower is faster)
 
-letterDiv.scrollTop = 0;
+    async function scrollProcess() {
+      // PAUSE AT TOP
+      element.scrollTop = 0;
+      await new Promise(res => currentScrollTimeout = setTimeout(res, pauseTime));
 
-setInterval(() => {
-  letterDiv.scrollTop += 1.2;
-}, 90);
+      // SCROLL DOWN
+      while (element.scrollTop < (element.scrollHeight - element.clientHeight)) {
+        element.scrollTop += scrollStep;
+        await new Promise(res => currentScrollTimeout = setTimeout(res, scrollSpeed));
+      }
 
-}
+      // PAUSE AT BOTTOM
+      await new Promise(res => currentScrollTimeout = setTimeout(res, pauseTime));
 
+      // RESTART
+      scrollProcess();
+    }
+
+    scrollProcess();
+  }
 
   loadCartas();
 </script>
