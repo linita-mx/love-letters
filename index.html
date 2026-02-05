@@ -186,6 +186,8 @@ function startScroll(letterDiv) {
   .replace(/\n{3,}/g, "\n\n");  // collapse excessive breaks
 
 letterDiv.innerText = cleanedText;
+alert("scroll code reached");
+
 letterDiv.scrollTop = 0;
 
 setInterval(() => {
