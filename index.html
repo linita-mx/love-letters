@@ -152,6 +152,14 @@ marquee .sparkle {
           "Aún no hay cartas.";
         return;
       }
+let scrollInterval = null;
+
+function startScroll(letterDiv) {
+  if (scrollInterval) {
+    clearInterval(scrollInterval);
+    scrollInterval = null;
+  }
+}
 
       showRandomCarta();
       setInterval(showRandomCarta, 300000); // 5 minutes
@@ -186,7 +194,35 @@ if (scrollInterval) {
 
 if (letterDiv.scrollHeight > letterDiv.clientHeight) {
   setTimeout(() => {
-    scrollInterval = setInterval(() => {
+   scrollInterval = setInterval(() => {
+  const atBottom =
+    letterDiv.scrollTop + letterDiv.clientHeight >= letterDiv.scrollHeight - 1;
+
+  if (atBottom) {
+    clearInterval(scrollInterval);
+    scrollInterval = null;
+
+    // pause at bottom
+    setTimeout(() => {
+      letterDiv.scrollTop = 0;
+
+      // pause at top, then restart scroll
+      setTimeout(() => {
+        startScroll(letterDiv);
+
+        scrollInterval = setInterval(() => {
+          letterDiv.scrollTop += 1.2;
+        }, 60);
+
+      }, 5000);
+    }, 5000);
+
+    return;
+  }
+
+  letterDiv.scrollTop += 1.2;
+}, 90);
+
 
 if (letterDiv.scrollTop + letterDiv.clientHeight >= letterDiv.scrollHeight) {
   clearInterval(scrollInterval);
