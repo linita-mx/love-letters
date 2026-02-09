@@ -76,7 +76,7 @@
 <div id="letter">Cargando carta...</div>
 
 <div id="footer-note">
-  Escríbenos anónimamente a: <b>cartas de amor y odio @ gmail.com</b> <br>
+  Escríbe anónimamente a: <b>cartas de amor y odio @ gmail.com</b> <br>
   Favor de no incluir datos identificatorios.
 </div>
 
@@ -93,7 +93,7 @@
       cartas = await response.json();
       if (cartas.length > 0) {
         showRandomCarta();
-        setInterval(showRandomCarta, 300000); // New letter every 5 mins
+        setInterval(showRandomCarta, 60000); // New letter every 5 mins
       }
     } catch (error) {
       document.getElementById("letter").innerText = "Error al cargar las cartas.";
