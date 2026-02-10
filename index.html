@@ -16,20 +16,17 @@
     }
 
 .title {
-  font-family: "Great Vibes", cursive;
-  /* 10vw on a 1024px screen is ~102px. 
-     This makes the total text width roughly 480px-500px, 
-     just shy of the 512px half-way mark. */
-  font-size: 10vw; 
+  font-family: "Great Vibes", cursive !important; /* !important ensures it overrides other rules */
+  font-size: 95px !important; 
   letter-spacing: 0.02em;
   display: inline-block;
   white-space: nowrap;
-  line-height: 1.2;
+  line-height: 1;
 }
 
-/* This ensures the hearts don't look tiny next to the big text */
 marquee img {
-  height: 8vw; 
+  /* This keeps the hearts proportional to the text height */
+  height: 80px; 
   width: auto;
   vertical-align: middle;
 }
