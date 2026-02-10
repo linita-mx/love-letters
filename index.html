@@ -15,24 +15,32 @@
       font-family: Times, "Times New Roman", serif;
     }
 
+marquee {
+  overflow: visible;
+  /* We give the marquee a height taller than the font 
+     to prevent the "clipping" at the top and bottom */
+  height: 160px; 
+  line-height: 160px; /* Centers the text vertically within that height */
+  vertical-align: middle;
+}
+
 .title {
   font-family: "Great Vibes", cursive !important;
-  /* Boosted to 110px to feel "large" on a 1024px screen */
   font-size: 110px !important; 
   letter-spacing: 0.01em;
   display: inline-block;
   white-space: nowrap;
-  line-height: 1;
-  vertical-align: middle;
+  /* Ensure the text itself doesn't try to crop */
+  line-height: normal; 
+  padding: 10px 0;
 }
 
 marquee img {
-  /* Shrinking the hearts to about 40% of the text size 
-     so they align with the middle of the words */
   height: 45px; 
   width: auto;
-  vertical-align: middle;
-  margin: 0 20px; /* Adds some space so they don't touch the letters */
+  /* This keeps the hearts centered relative to the tall text */
+  vertical-align: middle; 
+  margin: 0 20px;
 }
     marquee {
       overflow: visible;
