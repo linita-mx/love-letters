@@ -16,21 +16,24 @@
     }
 
 .title {
-  font-family: "Great Vibes", cursive !important; /* !important ensures it overrides other rules */
-  font-size: 95px !important; 
-  letter-spacing: 0.02em;
+  font-family: "Great Vibes", cursive !important;
+  /* Boosted to 110px to feel "large" on a 1024px screen */
+  font-size: 110px !important; 
+  letter-spacing: 0.01em;
   display: inline-block;
   white-space: nowrap;
   line-height: 1;
-}
-
-marquee img {
-  /* This keeps the hearts proportional to the text height */
-  height: 80px; 
-  width: auto;
   vertical-align: middle;
 }
 
+marquee img {
+  /* Shrinking the hearts to about 40% of the text size 
+     so they align with the middle of the words */
+  height: 45px; 
+  width: auto;
+  vertical-align: middle;
+  margin: 0 20px; /* Adds some space so they don't touch the letters */
+}
     marquee {
       overflow: visible;
     }
