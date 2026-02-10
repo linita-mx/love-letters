@@ -15,17 +15,23 @@
       font-family: Times, "Times New Roman", serif;
     }
 
-   .title {
+.title {
   font-family: "Great Vibes", cursive;
-  /* - 40px is the minimum for small screens
-     - 4.5vw scales it based on the width
-     - 48px is the 'sweet spot' for a 1024px projector to keep it 
-       just under half the screen width 
-  */
-  font-size: clamp(40px, 4.5vw, 48px); 
+  /* 10vw on a 1024px screen is ~102px. 
+     This makes the total text width roughly 480px-500px, 
+     just shy of the 512px half-way mark. */
+  font-size: 10vw; 
   letter-spacing: 0.02em;
   display: inline-block;
   white-space: nowrap;
+  line-height: 1.2;
+}
+
+/* This ensures the hearts don't look tiny next to the big text */
+marquee img {
+  height: 8vw; 
+  width: auto;
+  vertical-align: middle;
 }
 
     marquee {
