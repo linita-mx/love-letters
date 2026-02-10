@@ -16,9 +16,14 @@
     }
 
    .title {
-  font-family: "Great Vibes", cursive; /* Changed from Cedarville Cursive */
-  font-size: clamp(60px, 12vw, 200px);   /* Made it slightly larger as script fonts can be thin */
-  letter-spacing: 0.05em;              /* Script looks better when letters are closer */
+  font-family: "Great Vibes", cursive;
+  /* - 40px is the minimum for small screens
+     - 4.5vw scales it based on the width
+     - 48px is the 'sweet spot' for a 1024px projector to keep it 
+       just under half the screen width 
+  */
+  font-size: clamp(40px, 4.5vw, 48px); 
+  letter-spacing: 0.02em;
   display: inline-block;
   white-space: nowrap;
 }
