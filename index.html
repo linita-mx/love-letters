@@ -81,38 +81,54 @@
 </div>
 
 <script>
-  const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLj-Rga6GHuVHQ6p37iq1ss2dgjJwsrftzn5nbUFB2AG_WnEyNP6Eb3klj3eIfYMfOo1rLwcJuCPeFCBjoN18fVrtNqS-NmVo2Dbu-Y3zmu6qwqBRs3iJx0RLYE4ZlfskUPP1t5VMSW8OO2eyQTCrw8ADbwxdIUDzkPDkYKIHxmLhx1b9qx5x2TSkZAkBMLBIPBMRTFVraQUBEfc5XTkzO5cnK5lna7hMeOKWQm_vxj4QU5Yl3XTDRdXaGC6yPMN3HXdAm8fNjM0f53fOJeftLU8dfG5jw&lib=MQI7QxRBYlxiqI2aa0E5dzYRd7endaXU7";
+const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLj-Rga6GHuVHQ6p37iq1ss2dgjJwsrftzn5nbUFB2AG_WnEyNP6Eb3klj3eIfYMfOo1rLwcJuCPeFCBjoN18fVrtNqS-NmVo2Dbu-Y3zmu6qwqBRs3iJx0RLYE4ZlfskUPP1t5VMSW8OO2eyQTCrw8ADbwxdIUDzkPDkYKIHxmLhx1b9qx5x2TSkZAkBMLBIPBMRTFVraQUBEfc5XTkzO5cnK5lna7hMeOKWQm_vxj4QU5Yl3XTDRdXaGC6yPMN3HXdAm8fNjM0f53fOJeftLU8dfG5jw&lib=MQI7QxRBYlxiqI2aa0E5dzYRd7endaXU7";
   
-  let cartas = [];
-  let lastIndex = -1;
-  let currentScrollTimeout = null; // Keeps track of the animation
+  let playlist = [];       
+  let currentScrollTimeout = null;
 
   async function loadCartas() {
     try {
       const response = await fetch(API_URL);
-      cartas = await response.json();
-      if (cartas.length > 0) {
-        showRandomCarta();
-        setInterval(showRandomCarta, 60000); // New letter every 5 mins
+      const allCartas = await response.json();
+      
+      if (allCartas.length > 0) {
+        // Create and shuffle the playlist from the freshly fetched letters
+        preparePlaylist(allCartas);
+        showNextCarta();
+        
+        // Only start the interval once
+        if (!window.cartaInterval) {
+          window.cartaInterval = setInterval(showNextCarta, 60000); // 1 minute
+        }
       }
     } catch (error) {
+      console.error("Fetch error:", error);
       document.getElementById("letter").innerText = "Error al cargar las cartas.";
     }
   }
 
-  function showRandomCarta() {
-    // 1. Pick a random letter
-    let randomIndex;
-    do {
-      randomIndex = Math.floor(Math.random() * cartas.length);
-    } while (randomIndex === lastIndex && cartas.length > 1);
-    lastIndex = randomIndex;
+  function preparePlaylist(cartaArray) {
+    // Copy the array and shuffle it
+    playlist = [...cartaArray];
+    for (let i = playlist.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [playlist[i], playlist[j]] = [playlist[j], playlist[i]];
+    }
+  }
 
-    // 2. Display the text
+  async function showNextCarta() {
+    // If playlist is empty, fetch the LATEST data from the API
+    if (playlist.length === 0) {
+      await loadCartas(); 
+      return; // loadCartas will call showNextCarta again
+    }
+
+    const cartaText = playlist.pop();
     const letterDiv = document.getElementById("letter");
-    letterDiv.innerText = cartas[randomIndex].replace(/\r\n/g, "\n").replace(/\n{3,}/g, "\n\n");
+    
+    // Formatting the text
+    letterDiv.innerText = cartaText.replace(/\r\n/g, "\n").replace(/\n{3,}/g, "\n\n");
 
-    // 3. Reset scroll and start the animation
     stopScroll(); 
     startAutoScroll(letterDiv);
   }
@@ -122,25 +138,20 @@
   }
 
   function startAutoScroll(element) {
-    const pauseTime = 5000; // 5 seconds pause
-    const scrollStep = 1;   // How many pixels to move
-    const scrollSpeed = 40; // Milliseconds (Lower is faster)
+    const pauseTime = 5000;
+    const scrollStep = 1;
+    const scrollSpeed = 40;
 
     async function scrollProcess() {
-      // PAUSE AT TOP
       element.scrollTop = 0;
       await new Promise(res => currentScrollTimeout = setTimeout(res, pauseTime));
 
-      // SCROLL DOWN
       while (element.scrollTop < (element.scrollHeight - element.clientHeight)) {
         element.scrollTop += scrollStep;
         await new Promise(res => currentScrollTimeout = setTimeout(res, scrollSpeed));
       }
 
-      // PAUSE AT BOTTOM
       await new Promise(res => currentScrollTimeout = setTimeout(res, pauseTime));
-
-      // RESTART
       scrollProcess();
     }
 
